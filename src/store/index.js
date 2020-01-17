@@ -5,9 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        membre: false
+        membre: false,
+        token: ''
     },
-    mutations: {},
+    mutations: {
+    },
     actions: {},
     modules: {}
 })

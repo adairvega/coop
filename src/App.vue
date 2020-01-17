@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/Singup">Sign Up</router-link> 
+      <router-link to="/Singup">Sign Up</router-link>
     </div>
     <router-view/>
   </div>
@@ -23,7 +23,7 @@ export default {
         this.$router.push('/Homepage');
       }
     }).catch(() => {
-      alert('Membre connecte')
+      console.log('Membre connecté')
     })
   },
 

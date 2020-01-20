@@ -1,20 +1,20 @@
 <template>
-  <div class="index">
+  <div class="Index">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <div class="container">
       <h1>Sing in</h1>
     </div>
     <br>
     <div class="container col-6">
-    <form>
+    <form @submit.prevent="login">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="inputEmail">Email</label>
+        <input type="email" v-model="email" class="form-control">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. 😉</small>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="inputPassword">Password</label>
+        <input type="password" v-model="password" class="form-control">
       </div>
       <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -29,14 +29,25 @@
 <script>
 export default {
   name: 'Index',
-  methods: {
-    
+  data() {
+    return {
+      email : '',
+      password : ''
+    }
   },
   mounted(){
       
   },
-  methods(){
-    
+  methods : {
+    login: function(event){
+      axios.post('members/signin',{
+        email : this.email,
+        password : this.password
+      }).then(response => {
+        this.$router.push('/Homepage');
+      })
+      .catch(error => console.log(error))
+    }
   }
 }
 </script>

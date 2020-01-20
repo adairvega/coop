@@ -3,7 +3,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <div class="container col-6">
             <form @submit.prevent="buttonCreateUser">
-
                 <label>Username</label>
                 <input type="text" class="form-control" v-model="fullname">
                 <br>
@@ -35,12 +34,12 @@ export default {
   methods : {
 
     buttonCreateUser: function(event) {
-          axios
-              .post('members',{
+          axios.post('members',{
                       fullname :  this.fullname,
                       email :     this.email,
                       password : this.password
                     }).then(response => {
+                      this.$store.commit('member',response.data)
                       this.$router.push('/Homepage');
                     })
                     .catch(error => console.log(error))

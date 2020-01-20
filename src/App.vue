@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/Singup">Sign Up</router-link>
+      <router-link to="/">Login</router-link> |
+      <router-link to="/Singup">Sign Up</router-link> |
+      <router-link to="/Logout">Sign Out</router-link>
     </div>
     <router-view/>
   </div>
@@ -20,7 +21,7 @@ export default {
   mounted() {
     axios.get('ping').then(() => {
       if (!this.membreConnecte) {
-        this.$router.push('/Homepage');
+        this.$router.push('/');
       }
     }).catch(() => {
       console.log('Membre connecté')

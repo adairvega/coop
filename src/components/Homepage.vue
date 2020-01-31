@@ -8,7 +8,7 @@
           <button class="btn btn-primary" @click="showMembersList">Show members</button>
         </div>
         <div class="col-7">
-          <button class="btn btn-success">Create a conversation</button>
+          <button class="btn btn-success" @click="goToConversation">Go to conversations</button>
         </div>
       </div>
     </div>
@@ -28,10 +28,10 @@ export default {
       axios.get('members').then(response => {
         this.$store.commit('setMembres',response.data);
       })
+    },
+    goToConversation: function(event){
+      this.$router.push('/Conversation');
     }
-  },
-  mounted(){
-      console.log('We are logged');
   }
 }
 </script>

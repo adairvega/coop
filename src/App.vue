@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Login</router-link> |
-      <router-link to="/Homepage">Accueil</router-link> |
-      <router-link to="/Singup">Sign Up</router-link> |
-      <router-link to="/Logout">Sign Out</router-link>
-    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><router-link to="/">Login</router-link></li>
+        <li class="breadcrumb-item"><router-link to="/Homepage">Accueil</router-link></li>
+        <li class="breadcrumb-item"><router-link to="/Singup">Sign Up</router-link></li>
+        <li class="breadcrumb-item"><router-link to="/Logout">Sign Out</router-link></li>
+      </ol>
+    </nav>
     <router-view/>
   </div>
 </template>

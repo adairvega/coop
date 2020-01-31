@@ -31,8 +31,10 @@ export default {
   name: 'Index',
   data() {
     return {
-      email : '',
-      password : ''
+      //Delete after
+      email : 'adair@mail.fr',
+      password : '1234',
+      token: ''
     }
   },
   mounted(){
@@ -44,6 +46,7 @@ export default {
         email : this.email,
         password : this.password
       }).then(response => {
+        this.$store.commit('setSession',response.data)
         this.$router.push('/Homepage');
       })
       .catch(error => console.log(error))

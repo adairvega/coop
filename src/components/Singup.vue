@@ -25,14 +25,10 @@ export default {
     return {
         email :'',
         password : '',
-        fullname : '',
+        fullname : ''
     }
   },
-  mounted(){
-      console.log('We are going to create an account for you, don\'t worry!');
-  },
   methods : {
-
     buttonCreateUser: function(event) {
           axios.post('members',{
                       fullname :  this.fullname,
@@ -41,10 +37,8 @@ export default {
                     }).then(response => {
                       this.$store.commit('member',response.data)
                       this.$router.push('/Homepage');
-                    })
-                    .catch(error => console.log(error))
+                    }).catch(error => console.log(error))
             }
-
   }
 }
 </script>

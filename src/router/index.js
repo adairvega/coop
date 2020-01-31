@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Index from '../components/Index.vue'
 import Singup from '../components/Singup.vue'
 import Homepage from '../components/Homepage.vue'
+import Conversation from '../components/Conversation.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [{
         path: '/Homepage',
         name: 'homepage',
         component: Homepage
+    },
+    {
+        path: '/Conversation',
+        name: 'Conversation',
+        component: Conversation
     }
 ]
 

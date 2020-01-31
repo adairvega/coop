@@ -7,14 +7,19 @@ export default new Vuex.Store({
     state: {
         membre: false,
         token: '',
-        membres: ''
+        membres: '',
+        channels: ''
     },
     mutations: {
-        token(state,token){
-            state.token = token;
+        setSession(state, data) {
+            state.token = data.token;
+            state.membre = data.member;
         },
-        setMembres(state,membres){
+        setMembres(state, membres) {
             state.membres = membres
+        },
+        setChannels(state, channels) {
+            state.channels = channels
         }
     },
     actions: {},

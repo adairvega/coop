@@ -4,6 +4,8 @@ import Index from '../components/Index.vue'
 import Singup from '../components/Singup.vue'
 import Homepage from '../components/Homepage.vue'
 import Conversation from '../components/Conversation.vue'
+import DetailMember from '../components/DetailMember.vue'
+import Messages from '../components/Messages.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +28,16 @@ const routes = [{
         path: '/Conversation',
         name: 'Conversation',
         component: Conversation
+    },
+    {
+        path: '/DetailMember',
+        name: 'DetailMember',
+        component: DetailMember
+    },
+    {
+        path: '/Messages',
+        name: 'Messages',
+        component: Messages
     }
 ]
 

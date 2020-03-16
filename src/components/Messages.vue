@@ -36,16 +36,18 @@
           <div v-for="msg in $store.state.messages.data" class="row">
             <div class="col col-4">
               <br><br>
-              <div class="row">
-                <div class="col col-4"></div>
-                <div class="col col-4">
-                  <button class="btn btn-danger">
-                    <img src="../assets/delete.svg" style="width: 15px;" />
+              <div class="row" v-if="msg.member_id == $store.state.membre.id">
+                <div class="col col-8">
+                  <textarea id="editedMessage" class="form-control" v-model="messageEditing" />
+                </div>
+                <div class="col col-2">
+                  <button class="btn btn-warning" @click="editMsg(msg.channel_id, msg.id, msg.message)">
+                    <img src="../assets/edit.svg" style="width: 20px;" />
                   </button>
                 </div>
-                <div class="col col-4">
-                  <button class="btn btn-warning">
-                    <img src="../assets/edit.svg" style="width: 20px;" />
+                <div class="col col-2">
+                  <button class="btn btn-danger" @click="deleteMsg(msg.channel_id, msg.id)">
+                    <img src="../assets/delete.svg" style="width: 15px;" />
                   </button>
                 </div>
               </div>
@@ -140,13 +142,15 @@ export default {
   name: "Messages",
   data() {
     return {
-      message: ""
+      message: "",
+      messageEditing: ""
     };
   },
   methods: {
     returnToHall: function(event) {
       this.$router.push("/Conversation");
     },
+
     newMessage: function(channel_id, membre_id) {
       axios
         .post("channels/" + channel_id + "/posts", {
@@ -172,6 +176,36 @@ export default {
     gotoUser: function(membre) {
       this.$store.commit("setMembre", membre);
       this.$router.push("/DetailMember");
+    },
+
+    editMsg: function(channel_id, idmsg, messageBeforeEdit) {
+      axios
+        .put("channels/" + channel_id + "/posts/" + idmsg, {
+          message: this.messageEditing,
+          token: this.$store.state.token
+        })
+        .then(response => {
+          this.messageEditing = "";
+          axios
+            .get("channels/" + channel_id + "/posts", this.$store.state.token)
+            .then(response => {
+              //Trying to save the messages
+              this.$store.commit("setMessages", response);
+
+              this.$store.commit("setChannel", channel);
+              this.$router.push("/Messages");
+            })
+            .catch(error => console.log(error));
+        });
+    },
+    deleteMsg: function(channel_id, idmsg) {
+      axios
+      .delete("channels/"+channel_id+"/posts/"+idmsg, this.$store.state.token)
+      .then(response => {
+          this.$router.push("/Messages");
+        })
+        .catch(error => console.log(error));
+      
     }
   }
 };

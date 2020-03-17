@@ -31,9 +31,11 @@ export default {
   name: 'Index',
   data() {
     return {
-      //Delete after
-      email : 'adair@mail.fr',
-      password : '1234',
+      //Test Identifiants
+      //adair@mail.fr
+      //1234
+      email : '',
+      password : '',
       token: ''
     }
   },
